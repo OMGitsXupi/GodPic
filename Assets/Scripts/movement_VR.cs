@@ -64,7 +64,7 @@ public class movement_VR : LocomotionProvider
 
     void AplicarGravedad()
     {
-        Vector3 gravedad = new Vector3(0, Physics.gravity.y * multiplicadorGravedad * Time.deltaTime, 0);
+        Vector3 gravedad = new Vector3(0, Physics.gravity.y * multiplicadorGravedad, 0);
         controladorPersonaje.Move(gravedad * Time.deltaTime);
     }
 }

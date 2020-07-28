@@ -14,8 +14,7 @@ public class RayoEnciendeFuego : MonoBehaviour
     private void Awake()
     {
         objetoAgarrable = GetComponent<XRGrabInteractable>();
-        objetoAgarrable.onHoverEnter.AddListener(Resaltar);
-        objetoAgarrable.onLastHoverExit.AddListener(DejarDeResaltar);
+        //objetoAgarrable.onHoverEnter.AddListener(Resaltar);
 
         outline = gameObject.AddComponent<Outline>();
         outline.enabled = false;
@@ -36,29 +35,26 @@ public class RayoEnciendeFuego : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
-    {
-        objetoAgarrable.onHoverEnter.RemoveListener(Resaltar);
-        objetoAgarrable.onLastHoverExit.RemoveListener(DejarDeResaltar);
-    }
-
     void OnTriggerEnter(Collider objeto)
     {
         if (objeto.gameObject == activador)
         {
             doorIsOpening = true;
             fuego.SetActive(true);
-            gameObject.GetComponent<MeshRenderer>().enabled = false;
+            //gameObject.GetComponent<MeshRenderer>().enabled = false; //Se vuelve invisible
         }
     }
 
-    void Resaltar(XRBaseInteractor interactor)
-    {
-        outline.enabled = true;
-    }
+    //void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.tag == "player")
+    //    {
+    //        Physics.IgnoreCollision(collision.collider, GetComponent<Collider>());
+    //    }
+    //}
 
-    void DejarDeResaltar(XRBaseInteractor interactor)
+    public void Resaltar(bool siono)
     {
-        outline.enabled = false;
+        outline.enabled = siono;
     }
 }
