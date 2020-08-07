@@ -4,7 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/GodPic.unity
+    guid: 6fcd96f863487cc4a85dc55a7c64c530
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 7c9fa7dd5d516c6408782a485f82a3a5,
       type: 2}
