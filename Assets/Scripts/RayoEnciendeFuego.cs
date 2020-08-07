@@ -6,10 +6,11 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class RayoEnciendeFuego : MonoBehaviour
 {
     public GameObject door, fuego, activador;
-    public bool doorIsOpening;
+    private bool doorIsOpening;
 
     private XRGrabInteractable objetoAgarrable = null;
     private Outline outline;
+    private bool enActivador = false;
 
     private void Awake()
     {
@@ -39,9 +40,17 @@ public class RayoEnciendeFuego : MonoBehaviour
     {
         if (objeto.gameObject == activador)
         {
-            doorIsOpening = true;
-            fuego.SetActive(true);
-            //gameObject.GetComponent<MeshRenderer>().enabled = false; //Se vuelve invisible
+            enActivador = true;
+            outline.OutlineColor = Color.red;
+        }
+    }
+
+    void OnTriggerExit(Collider objeto)
+    {
+        if (objeto.gameObject == activador)
+        {
+            enActivador = false;
+            outline.OutlineColor = Color.yellow;
         }
     }
 
@@ -56,5 +65,16 @@ public class RayoEnciendeFuego : MonoBehaviour
     public void Resaltar(bool siono)
     {
         outline.enabled = siono;
+    }
+
+    public void Soltar()
+    {
+        if (enActivador)
+        {
+            doorIsOpening = true;
+            fuego.SetActive(true);
+            transform.localScale = new Vector3(0, 0, 0);
+            GetComponent<XRGrabInteractable>().enabled = false; //No se puede coger
+        }
     }
 }
