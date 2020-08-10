@@ -15,7 +15,6 @@ public class RayoEnciendeFuego : MonoBehaviour
     private void Awake()
     {
         objetoAgarrable = GetComponent<XRGrabInteractable>();
-        //objetoAgarrable.onHoverEnter.AddListener(Resaltar);
 
         outline = gameObject.AddComponent<Outline>();
         outline.enabled = false;
@@ -54,14 +53,6 @@ public class RayoEnciendeFuego : MonoBehaviour
         }
     }
 
-    //void OnCollisionEnter(Collision collision)
-    //{
-    //    if (collision.gameObject.tag == "player")
-    //    {
-    //        Physics.IgnoreCollision(collision.collider, GetComponent<Collider>());
-    //    }
-    //}
-
     public void Resaltar(bool siono)
     {
         outline.enabled = siono;
@@ -72,6 +63,7 @@ public class RayoEnciendeFuego : MonoBehaviour
         if (enActivador)
         {
             doorIsOpening = true;
+            door.GetComponent<AudioSource>().enabled = true;
             fuego.SetActive(true);
             transform.localScale = new Vector3(0, 0, 0);
             GetComponent<XRGrabInteractable>().enabled = false; //No se puede coger

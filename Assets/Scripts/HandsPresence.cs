@@ -48,7 +48,11 @@ public class HandsPresence : MonoBehaviour
     void UpdateHandAnimation()
     {
         if(targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float triggerValue))
+        {
             handAnimator.SetFloat("Trigger", triggerValue);
+            if (triggerValue > 0.5f)
+                handModelPrefab.GetComponent<MeshRenderer>().enabled = false;
+        }
         else handAnimator.SetFloat("Trigger", 0);
 
         if (targetDevice.TryGetFeatureValue(CommonUsages.grip, out float gripValue))

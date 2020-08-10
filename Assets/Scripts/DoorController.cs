@@ -39,6 +39,7 @@ public class DoorController : MonoBehaviour
         if(other.tag == "Player")
         {
             puerta.transform.position = posicionOriginal;
+            puerta.GetComponent<AudioSource>().Play();
             GameObject.Destroy(gameObject);
         }
     }
