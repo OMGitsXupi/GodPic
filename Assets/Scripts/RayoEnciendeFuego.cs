@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class RayoEnciendeFuego : MonoBehaviour
@@ -29,7 +27,7 @@ public class RayoEnciendeFuego : MonoBehaviour
         {
             door.transform.Translate(Vector3.down * Time.deltaTime * 10);
         }
-        if (door.transform.position.x > 2.8f)
+        if (door.transform.position.y <= -3)
         {
             doorIsOpening = false;
         }

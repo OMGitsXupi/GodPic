@@ -15,19 +15,11 @@ public class DoorController : MonoBehaviour
         {
             puerta.transform.Translate(Vector3.down * Time.deltaTime * 5);
         }
-        /*if (doorIsClosing)
-        {
-            puerta.transform.Translate(Vector3.up * Time.deltaTime * 5);
-        }*/
 
-        if (puerta.transform.position.y <= -3)
+        if (puerta.transform.position.y <= -3) //door.transform.position.x > 2.8f
         {
             doorIsOpening = false;
         }
-        /*if (puerta.transform.position.y >= posicionOriginal.y)
-        {
-            doorIsClosing = false;
-        }*/
     }
     void Start()
     {
@@ -38,7 +30,7 @@ public class DoorController : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            puerta.transform.position = posicionOriginal;
+            CerrarPuerta();
             puerta.GetComponent<AudioSource>().Play();
             GameObject.Destroy(gameObject);
         }
@@ -47,5 +39,13 @@ public class DoorController : MonoBehaviour
     public void AbrirPuerta()
     {
         doorIsOpening = true;
+        puerta.GetComponent<AudioSource>().enabled = true;
+    }
+
+    public void CerrarPuerta()
+    {
+        doorIsOpening = false;
+        puerta.transform.position = posicionOriginal;
+        puerta.GetComponent<AudioSource>().Play();
     }
 }

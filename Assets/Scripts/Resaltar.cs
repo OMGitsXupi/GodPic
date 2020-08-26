@@ -5,8 +5,7 @@ using UnityEngine;
 public class Resaltar : MonoBehaviour
 {
     public GameObject activador = null;
-
-    private bool enActivador;
+    
     private Outline outline;
 
     void Awake()
@@ -27,7 +26,6 @@ public class Resaltar : MonoBehaviour
     {
         if (activador != null && objeto.gameObject == activador)
         {
-            enActivador = true;
             outline.OutlineColor = Color.red;
         }
     }
@@ -36,7 +34,6 @@ public class Resaltar : MonoBehaviour
     {
         if (activador != null && objeto.gameObject == activador) 
         {
-            enActivador = false;
             outline.OutlineColor = Color.yellow;
         }
     }
