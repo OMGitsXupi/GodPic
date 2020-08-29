@@ -3,7 +3,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class MaderaFaraon : MonoBehaviour
 {
-    public GameObject activador, puerta;
+    public GameObject activador, puerta, jeroglifico;
     public TextMesh dialogoACambiar;
 
     private XRGrabInteractable objetoAgarrable = null;
@@ -22,11 +22,11 @@ public class MaderaFaraon : MonoBehaviour
         }
         if (puerta.transform.position.y <= -3)
         {
-            doorIsOpening = false;
+            //doorIsOpening = false;
         }
     }
 
-    void OnTriggerEnter(Collider objeto)
+    void OnCollisionEnter(Collision objeto)
     {
         if (objeto.gameObject == activador)
         {
@@ -34,7 +34,7 @@ public class MaderaFaraon : MonoBehaviour
         }
     }
 
-    void OnTriggerExit(Collider objeto)
+    void OnCollisionExit(Collision objeto)
     {
         if (objeto.gameObject == activador)
         {
@@ -42,9 +42,10 @@ public class MaderaFaraon : MonoBehaviour
         }
     }
 
+
     public void Soltar()
     {
-        if (enActivador)
+        if (enActivador && jeroglifico != null && jeroglifico.activeSelf)
         {
             dialogoACambiar.text="Gracias!";
             doorIsOpening = true;
