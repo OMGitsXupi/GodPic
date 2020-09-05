@@ -7,26 +7,14 @@ public class MaderaFaraon : MonoBehaviour
     public TextMesh dialogoACambiar;
 
     private XRGrabInteractable objetoAgarrable = null;
-    private bool enActivador = false, doorIsOpening = false;
+    private bool enActivador = false;
 
     private void Awake()
     {
         objetoAgarrable = GetComponent<XRGrabInteractable>();
     }
 
-    void Update()
-    {
-        if (doorIsOpening)
-        {
-            puerta.transform.Translate(Vector3.down * Time.deltaTime * 10);
-        }
-        if (puerta.transform.position.y <= -3)
-        {
-            //doorIsOpening = false;
-        }
-    }
-
-    void OnCollisionEnter(Collision objeto)
+    void OnTriggerEnter(Collider objeto)
     {
         if (objeto.gameObject == activador)
         {
@@ -34,7 +22,7 @@ public class MaderaFaraon : MonoBehaviour
         }
     }
 
-    void OnCollisionExit(Collision objeto)
+    void OnTriggerExit(Collider objeto)
     {
         if (objeto.gameObject == activador)
         {
@@ -48,10 +36,9 @@ public class MaderaFaraon : MonoBehaviour
         if (enActivador && jeroglifico != null && jeroglifico.activeSelf)
         {
             dialogoACambiar.text="Gracias!";
-            doorIsOpening = true;
+            puerta.transform.position = puerta.transform.position - new Vector3(0, 3, 0);
             puerta.GetComponent<AudioSource>().enabled = true;
-            transform.localScale = new Vector3(0, 0, 0);
-            GetComponent<XRGrabInteractable>().enabled = false; //No se puede coger
+            GameObject.Destroy(gameObject);
         }
     }
 }

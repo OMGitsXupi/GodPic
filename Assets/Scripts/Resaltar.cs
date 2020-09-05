@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Resaltar : MonoBehaviour
 {
@@ -33,6 +31,21 @@ public class Resaltar : MonoBehaviour
     void OnTriggerExit(Collider objeto)
     {
         if (activador != null && objeto.gameObject == activador) 
+        {
+            outline.OutlineColor = Color.yellow;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (activador != null && collision.gameObject == activador)
+        {
+            outline.OutlineColor = Color.red;
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (activador != null && collision.gameObject == activador)
         {
             outline.OutlineColor = Color.yellow;
         }

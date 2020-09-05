@@ -4,8 +4,9 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class RayoEnciendeFuego : MonoBehaviour
 {
     public GameObject door, fuego, activador;
-    private bool doorIsOpening;
+    public TextMesh dialogoACambiar;
 
+    private bool doorIsOpening;
     private XRGrabInteractable objetoAgarrable = null;
     private Outline outline;
     private bool enActivador = false;
@@ -60,6 +61,7 @@ public class RayoEnciendeFuego : MonoBehaviour
     {
         if (enActivador)
         {
+            dialogoACambiar.text = "Ahora podremos calentarnos,\nprotegernos y cocinar alimentos!";
             doorIsOpening = true;
             door.GetComponent<AudioSource>().enabled = true;
             fuego.SetActive(true);

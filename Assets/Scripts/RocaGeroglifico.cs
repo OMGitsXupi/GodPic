@@ -13,6 +13,22 @@ public class RocaGeroglifico : MonoBehaviour
         objetoAgarrable = GetComponent<XRGrabInteractable>();
     }
 
+    void OnCollisionEnter(Collision objeto)
+    {
+        if (objeto.gameObject == activador)
+        {
+            enActivador = true;
+        }
+    }
+
+    void OnCollisionExit(Collision objeto)
+    {
+        if (objeto.gameObject == activador)
+        {
+            enActivador = false;
+        }
+    }
+
     void OnTriggerEnter(Collider objeto)
     {
         if (objeto.gameObject == activador)
@@ -28,7 +44,7 @@ public class RocaGeroglifico : MonoBehaviour
             enActivador = false;
         }
     }
-    
+
     public void Soltar()
     {
         if (enActivador)
