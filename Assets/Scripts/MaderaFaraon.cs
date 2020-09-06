@@ -3,16 +3,11 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class MaderaFaraon : MonoBehaviour
 {
-    public GameObject activador, puerta, jeroglifico;
+    public GameObject activador, jeroglifico, palanca, luzRoja, luzVerde;
     public TextMesh dialogoACambiar;
-
-    private XRGrabInteractable objetoAgarrable = null;
+    
     private bool enActivador = false;
-
-    private void Awake()
-    {
-        objetoAgarrable = GetComponent<XRGrabInteractable>();
-    }
+    
 
     void OnTriggerEnter(Collider objeto)
     {
@@ -36,9 +31,15 @@ public class MaderaFaraon : MonoBehaviour
         if (enActivador && jeroglifico != null && jeroglifico.activeSelf)
         {
             dialogoACambiar.text="Gracias!";
-            puerta.transform.position = puerta.transform.position - new Vector3(0, 3, 0);
-            puerta.GetComponent<AudioSource>().enabled = true;
-            GameObject.Destroy(gameObject);
+            transform.localScale = new Vector3(0, 0, 0);
+            GetComponent<XRGrabInteractable>().enabled = false; //No se puede coger
+
+            JointLimits limits = palanca.GetComponent<HingeJoint>().limits; //Desbloquear palanca
+            limits.max = 90;
+            palanca.GetComponent<HingeJoint>().limits = limits;
+
+            luzRoja.SetActive(false); //Poner luz verde
+            luzVerde.SetActive(true);
         }
     }
 }

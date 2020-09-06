@@ -657,10 +657,10 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  cloudProjectId: 
+  cloudProjectId: a92db887-97fa-4e62-b66a-73dc98b1a79f
   framebufferDepthMemorylessMode: 0
-  projectName: 
-  organizationId: 
+  projectName: GodPic
+  organizationId: omgitsxupi
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

@@ -3,35 +3,20 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class RayoEnciendeFuego : MonoBehaviour
 {
-    public GameObject door, fuego, activador;
+    public GameObject fuego, activador, palanca, luzRoja, luzVerde;
     public TextMesh dialogoACambiar;
 
     private bool doorIsOpening;
-    private XRGrabInteractable objetoAgarrable = null;
     private Outline outline;
     private bool enActivador = false;
 
     private void Awake()
     {
-        objetoAgarrable = GetComponent<XRGrabInteractable>();
-
         outline = gameObject.AddComponent<Outline>();
         outline.enabled = false;
         outline.OutlineMode = Outline.Mode.OutlineAll;
         outline.OutlineColor = Color.yellow;
         outline.OutlineWidth = 5f;
-    }
-
-    void Update()
-    {
-        if (doorIsOpening)
-        {
-            door.transform.Translate(Vector3.down * Time.deltaTime * 10);
-        }
-        if (door.transform.position.y <= -3)
-        {
-            doorIsOpening = false;
-        }
     }
 
     void OnTriggerEnter(Collider objeto)
@@ -62,11 +47,16 @@ public class RayoEnciendeFuego : MonoBehaviour
         if (enActivador)
         {
             dialogoACambiar.text = "Ahora podremos calentarnos,\nprotegernos y cocinar alimentos!";
-            doorIsOpening = true;
-            door.GetComponent<AudioSource>().enabled = true;
             fuego.SetActive(true);
             transform.localScale = new Vector3(0, 0, 0);
             GetComponent<XRGrabInteractable>().enabled = false; //No se puede coger
+
+            JointLimits limits = palanca.GetComponent<HingeJoint>().limits; //Desbloquear palanca
+            limits.max = 90;
+            palanca.GetComponent<HingeJoint>().limits = limits;
+
+            luzRoja.SetActive(false); //Poner luz verde
+            luzVerde.SetActive(true);
         }
     }
 }
