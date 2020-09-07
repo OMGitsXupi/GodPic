@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class MaderaFaraon : MonoBehaviour
+public class accionarSwad : MonoBehaviour
 {
-    public GameObject activador, jeroglifico, palanca, luzRoja, luzVerde;
+    public GameObject activador, swadParaActivar, palanca, luzRoja, luzVerde;
     public TextMesh dialogoACambiar;
-    
+
     private bool enActivador = false;
-    
+
     void OnTriggerEnter(Collider objeto)
     {
         if (objeto.gameObject == activador)
@@ -22,12 +22,12 @@ public class MaderaFaraon : MonoBehaviour
 
     public void Soltar()
     {
-        if (enActivador && jeroglifico != null && jeroglifico.activeSelf)
+        if (enActivador)
         {
-            dialogoACambiar.text="Esto es increible...";
+            dialogoACambiar.text = " Mejor... ahora solo te quedan\n4 piezas de conocimiento.";
             transform.localScale = new Vector3(0, 0, 0);
             GetComponent<XRGrabInteractable>().enabled = false; //No se puede coger
-            activador.GetComponent<AudioSource>().Play();
+            swadParaActivar.SetActive(true);
 
             JointLimits limits = palanca.GetComponent<HingeJoint>().limits; //Desbloquear palanca
             limits.max = 90;
@@ -38,4 +38,3 @@ public class MaderaFaraon : MonoBehaviour
         }
     }
 }
-

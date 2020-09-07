@@ -46,7 +46,7 @@ public class RayoEnciendeFuego : MonoBehaviour
     {
         if (enActivador)
         {
-            dialogoACambiar.text = "Ahora podremos calentarnos,\nprotegernos y cocinar alimentos!";
+            dialogoACambiar.text = "Ahora podremos calentarnos,\nprotegernos y cocinar alimentos";
             fuego.SetActive(true);
             transform.localScale = new Vector3(0, 0, 0);
             GetComponent<XRGrabInteractable>().enabled = false; //No se puede coger

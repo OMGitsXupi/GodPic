@@ -4,32 +4,13 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class Ratas : MonoBehaviour //ESTE SCRIPT IRÁ EN EL CUADRO EN EL QUE SE METERÁN LAS RATAS
 {
-    public GameObject door;
+    public GameObject palanca, luzRoja, luzVerde;
     public List<GameObject> ratas, imagenesRata;
     public TextMesh dialogoACambiar;
 
     private List<bool> ratasEnActivador = new List<bool>(4);
     private int ratasBien = 0;
     private const int ratasTotales = 4;
-    private bool doorIsOpening;
-    private XRGrabInteractable objetoAgarrable = null;
-
-    private void Awake()
-    {
-        objetoAgarrable = GetComponent<XRGrabInteractable>();
-    }
-
-    void Update()
-    {
-        if (doorIsOpening)
-        {
-            door.transform.Translate(Vector3.down * Time.deltaTime * 10);
-        }
-        if (door.transform.position.y <= -3)
-        {
-            doorIsOpening = false;
-        }
-    }
 
     void OnTriggerEnter(Collider objeto)
     {
@@ -63,9 +44,14 @@ public class Ratas : MonoBehaviour //ESTE SCRIPT IRÁ EN EL CUADRO EN EL QUE SE 
     {
         if (ratasBien == ratasTotales)
         {
-            dialogoACambiar.text = "Parece ser que los pacientes\nestán mejorando poco a poco";
-            doorIsOpening = true;
-            door.GetComponent<AudioSource>().enabled = true;
+            dialogoACambiar.text = "Parece ser que los pacientes\nestan mejorando poco a poco";
+
+            JointLimits limits = palanca.GetComponent<HingeJoint>().limits; //Desbloquear palanca
+            limits.max = 90;
+            palanca.GetComponent<HingeJoint>().limits = limits;
+
+            luzRoja.SetActive(false); //Poner luz verde
+            luzVerde.SetActive(true);
         }
     }
 }
