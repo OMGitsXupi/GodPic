@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: aefe5a5534673654b9464425389e8a5a
+  - enabled: 1
     path: Assets/Scenes/GodPic.unity
     guid: 6fcd96f863487cc4a85dc55a7c64c530
   m_configObjects:
