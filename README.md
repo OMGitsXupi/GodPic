@@ -7,4 +7,4 @@ Juego Point &amp; Click en realidad virtual - Proyecto de Fin de Grado para la U
 ### :movie_camera: [Gameplay completo](https://youtu.be/TFguJMnXS4o)
 ### :movie_camera: [Gameplay comentado (parodia)](https://youtu.be/utbNkXE8JM0)
 
-### :page_with_curl: [Documentación](https://github.com/OMGitsXupi/GodPic/blob/master/Memoria%20TFG.pdf)
+### :page_with_curl: [Documentación (memoria)](https://github.com/OMGitsXupi/GodPic/blob/master/Memoria%20TFG.pdf)
